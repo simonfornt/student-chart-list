@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import studentsData from './data'; // Your static data file
+import Higlighter from './components/Higlighter';
 
 function StudentDetails() {
   const [filters, setFilters] = useState({
@@ -79,13 +80,21 @@ function StudentDetails() {
             {filteredStudents.map((student) => (
               <tr key={student.id} className='text-center'>
                 <td className='border px-2 py-1'>{student.id}</td>
-                <td className='border px-2 py-1'>{student.name}</td>
-                <td className='border px-2 py-1'>{student.detail.roll}</td>
-                <td className='border px-2 py-1'>{student.detail.class}</td>
+                <td className='border px-2 py-1'>
+                    <Higlighter text={student.name} highlight={filters.name}/>
+                </td>
+                <td className='border px-2 py-1'>
+                    <Higlighter text={student.detail.roll} highlight={filters.roll}/>
+                </td>
+                <td className='border px-2 py-1'>
+                    <Higlighter text={student.detail.class} highlight={filters.class}/>
+                </td>
                 <td className='border px-2 py-1'>
                   {student.detail.fatherName} / {student.detail.motherName}
                 </td>
-                <td className='border px-2 py-1'>{student.group}</td>
+                <td className='border px-2 py-1'>
+                    {student.group}
+                </td>
                 <td className='border px-2 py-1'>{student.detail.date}</td>
                 <td className='border px-2 py-1'>
                   {student.detail.payment ? 'Done' : 'Not Done'}
